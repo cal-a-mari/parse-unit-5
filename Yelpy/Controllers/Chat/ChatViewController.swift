@@ -49,15 +49,6 @@ class ChatViewController: UIViewController {
     }
   }
   
-  
-  
-  /*------  Message Functionality ------*/
-  
-  // ––––– ADD FUNCTIONALITY TO retrieveChatMessages()
-  @objc func retrieveChatMessages() {
-    
-  }
-  
   @IBAction func onSend(_ sender: Any) {
     guard let messageText = messageTextField.text, !messageText.isEmpty else {
       print("Can't send empty message")
@@ -65,6 +56,7 @@ class ChatViewController: UIViewController {
     }
     let message = PFObject(className: "Message")
     message["text"] = messageText
+    message["user"] = PFUser.current()
     message.saveInBackground { isSuccess, error in
       if let error = error {
         print("Error in sending message: \(error.localizedDescription)")
@@ -72,13 +64,14 @@ class ChatViewController: UIViewController {
         print("Message successfully sent")
       }
     }
+    messageTextField.text?.removeAll()
   }
   
   @IBAction func onLogout(_ sender: Any) {
-    
+    NotificationCenter.default.post(name: NSNotification.Name("logout"),
+                                    object: nil)
   }
   
-  /*------ Dismiss Keyboard and Logout ------*/
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true

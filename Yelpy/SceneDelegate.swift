@@ -26,17 +26,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       self.logout()
     }
     
-    
-    // Add event listener for when user logs out
-    
-    
-    // Add event listener for when user logs out
-    
-    
-    // Add User persistance across app restarts
-    
-    
-    guard let _ = (scene as? UIWindowScene) else { return }
+    if PFUser.current() != nil {
+      self.login()
+    }
   }
   
   private func login() {
@@ -45,8 +37,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   private func logout() {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "Login")
+    PFUser.logOutInBackground { [unowned self] error in
+      if let error = error {
+        print("Logout error: \(error)")
+      } else {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "Login")
+      }
+    }
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {
