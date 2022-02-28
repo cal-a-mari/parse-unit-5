@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    // Step 3: Add observers for login, logout
     NotificationCenter.default.addObserver(forName: Notification.Name("login"),
                                            object: nil,
                                            queue: .main) { [unowned self] notification in
@@ -26,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       self.logout()
     }
     
+    // Step 6: Persist logged in user
     if PFUser.current() != nil {
       self.login()
     }

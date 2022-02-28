@@ -34,6 +34,7 @@ class ChatViewController: UIViewController {
   }
   
   private func fetchMessagesEverySecond() {
+    // Step 5: Implement fetching logic
     Timer.scheduledTimer(withTimeInterval: 1.0,
                          repeats: true) { [weak self] timer in
       let query = PFQuery(className: "Message")
@@ -50,6 +51,7 @@ class ChatViewController: UIViewController {
   }
   
   @IBAction func onSend(_ sender: Any) {
+    // Step 4: Implement send message logic
     guard let messageText = messageTextField.text, !messageText.isEmpty else {
       print("Can't send empty message")
       return

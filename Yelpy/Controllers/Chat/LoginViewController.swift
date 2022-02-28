@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func onSignUp(_ sender: Any) {
+    // Step 2: Implement sign up logic
     guard !isUsernameOrPasswordEmpty() else {
       displayEmptyTextFieldError()
       return
@@ -38,6 +39,7 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func onLogin(_ sender: Any) {
+    // Step 3: Implement login logic
     guard !isUsernameOrPasswordEmpty() else {
       displayEmptyTextFieldError()
       return
