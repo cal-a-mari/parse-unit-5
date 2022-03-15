@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Step 1: Initialize Parse server connection
     Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
-      configuration.applicationId = "CodePath-Parse"
-      configuration.server = "http://45.79.67.127:1337/parse"
+      configuration.applicationId = "Y6sdzdtk3xovVAnrwNv8DjbBE6cDZpUJ7KlYwNl2"
+      configuration.clientKey = "6cybh32lMVzQFUroECY6SwhrUNLHI8P8ckCp6u6O"
+      configuration.server = "https://parseapi.back4app.com"
     }))
     return true
   }
