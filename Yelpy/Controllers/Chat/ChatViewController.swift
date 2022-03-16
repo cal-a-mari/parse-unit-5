@@ -35,7 +35,7 @@ class ChatViewController: UIViewController {
   
   private func fetchMessagesEverySecond() {
     // Step 5: Implement fetching logic
-    Timer.scheduledTimer(withTimeInterval: 1.0,
+    Timer.scheduledTimer(withTimeInterval: 5.0,
                          repeats: true) { [weak self] timer in
       let query = PFQuery(className: "Message")
       query.includeKey("user")
